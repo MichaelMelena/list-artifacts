@@ -3,7 +3,8 @@ description: "gets all artifacts for the current repository"
 inputs:
   GITHUB_TOKEN:
     description: "github access token for callers repository"
-    required: false
+    required: false,
+    defalt: ${{ secrets.GITHUB_TOKEN }}
   repository:
     reqired: false
     default: ${{ github.repository }}

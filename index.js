@@ -1,5 +1,11 @@
 const core = require("@actions/core");
+
+const token = core.getInput("GITHUB_TOKEN");
+const oldToken = process.env.GITHUB_TOKEN;
+process.env.GITHUB_TOKEN = token;
+
 const { Octokit } = require("@octokit/action");
+
 const octokit = new Octokit();
 
 const [owner, repo] = core.getInput("repository").split("/");
@@ -17,11 +23,12 @@ async function run() {
     );
     core.setOutput("artifacts", data.artifacts);
 
-    console.log(`artifacts for repository: ${repo}: `)
-    console.log(data.artifacts, );
-    
+    console.log(`artifacts for repository: ${repo}: `);
+    console.log(data.artifacts);
   } catch (error) {
     core.setFailed(error.message);
+  } finally {
+    process.env.GITHUB_TOKEN = oldToken;
   }
 }
 
