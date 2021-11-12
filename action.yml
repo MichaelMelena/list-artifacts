@@ -4,7 +4,7 @@ inputs:
   GITHUB_TOKEN:
     description: "github access token for callers repository"
     required: false,
-    defalt: ${{ secrets.GITHUB_TOKEN }}
+    default: ${{ secrets.GITHUB_TOKEN }}
   repository:
     reqired: false
     default: ${{ github.repository }}
