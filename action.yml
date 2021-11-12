@@ -3,8 +3,7 @@ description: 'Wait a designated number of milliseconds'
 inputs:
   repo-token:  
     description: 'github acess token'
-    required: false
-    default: ${{ github.token}}
+    required: true
 outputs:
   artifacts: # output will be available to future steps
     description: 'list of artifacts'
