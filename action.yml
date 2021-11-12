@@ -1,8 +1,8 @@
-name: 'Wait'
-description: 'Wait a designated number of milliseconds'
+name: 'get list artifacts'
+description: 'gets all artifacts for the current repository'
 inputs:
   GITHUB_TOKEN:  
-    description: 'github acess token'
+    description: 'github access token for callers repository'
     required: true
 outputs:
   artifacts: # output will be available to future steps
