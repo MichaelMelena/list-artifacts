@@ -4,19 +4,19 @@ returns list of artifacts in repository
 
 ## Inputs & Outputs
 
-this action by default uses the repository from which it was called. You can provide your own token in order to acces other repositories than the one from which you trigger you workflow. 
+this action by default uses the repository from which it was called. You can provide your own token in order to access other repositories than the one which triggered the workflow. 
 
-Default token is [automaticly created token](https://docs.github.com/en/actions/security-guides/automatic-token-authentication) stored in secrets which contains said token `${{ secrets.GITHUB_TOKEN}}` or from github context `${{ github.token }}`
+Default token is [automaticly created token](https://docs.github.com/en/actions/security-guides/automatic-token-authentication) and stored in secrets and can be acces via secrets `${{ secrets.GITHUB_TOKEN}}` or from github context `${{ github.token }}`.
 
 
 ### Inputs:
 
 | parameter  | required |       default       | description |
 | :--------- | :------: | :-----------------: | :---------- |
-| GITHUB_TOKEN    |   :x:    | ${{ github.token }} | you can specify you own token. Just make sure the token has permissions to API  `GET /repos/{owner}/{repo}/actions/artifacts`. As of right now when you create Personal access token (PAT) you have enable workflow permission |
+| GITHUB_TOKEN    |   :x:    | ${{ github.token }} | you can specify you own token. Just make sure the token has permissions to API  `GET /repos/{owner}/{repo}/actions/artifacts`. As of right now when you create Personal access token (PAT) you have to enable workflow permission |
 | repository |   :x:    | ${{ github.token }} | you can specify different repository in format `owner/repositry` for example `MichaelMelena/list-artifacts` for this repository
 
-\* *just make sure your token matches your repository*
+\* *make sure your token matches your repository*
 
 -----
 
@@ -59,10 +59,10 @@ list of artifacts in `JSON` format.
 Simple workflow which uses this action to retrieve list of artifacts and prints it to console
 
 ```yml
-name: My workflow
+name: Starter get artifacts
 on: [workflow_dispatch]
 jobs:
-  first-job:
+  get-artifacts:
     runs-on: ubuntu-latest
     steps:
     - id: result 
@@ -79,10 +79,10 @@ this template asumes you have create secret named `MY_PAT_TOKEN` which contains 
 you have to replace `owner/his-repository` with valid repository to which you or the PAT token have access.
 
 ```yml
-name: Advance workflow
+name: Advance get artifacts
 on: [workflow_dispatch]
 jobs:
-  first-job:
+  get-artifacts:
     runs-on: ubuntu-latest
     steps:
     - id: result
