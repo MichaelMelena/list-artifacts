@@ -2,7 +2,7 @@ const core = require("@actions/core");
 const { Octokit } = require("@octokit/action");
 const octokit = new Octokit();
 
-const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
+const [owner, repo] = core.getInput("repository").split("/");
 
 // most @actions toolkit packages have async methods
 async function run() {
@@ -15,9 +15,11 @@ async function run() {
         repo,
       }
     );
-    console.log(`artifacts for repo: ${repo}: `, data.artifacts);
-
     core.setOutput("artifacts", data.artifacts);
+
+    console.log(`artifacts for repository: ${repo}: `)
+    console.log(data.artifacts, );
+    
   } catch (error) {
     core.setFailed(error.message);
   }
