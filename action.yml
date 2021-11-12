@@ -1,7 +1,7 @@
 name: 'Wait'
 description: 'Wait a designated number of milliseconds'
 inputs:
-  repo-token:  
+  GITHUB_TOKEN:  
     description: 'github acess token'
     required: true
 outputs:

@@ -50513,7 +50513,7 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(2186);
 const { Octokit } = __nccwpck_require__(1231);
-const octokit = new Octokit({ auth: `${core.getInput("repo-token")}` });
+const octokit = new Octokit();
 
 const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
 
