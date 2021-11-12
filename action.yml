@@ -7,7 +7,6 @@ inputs:
 outputs:
   artifacts: # output will be available to future steps
     description: 'list of artifacts'
-    default: ${{toJSON([])}}
 runs:
   using: 'node12'
   main: 'dist/index.js'
