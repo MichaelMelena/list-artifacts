@@ -1,14 +1,12 @@
 # MichaelMelena/list-artifacts@v1
 
-returns list of artifacts for repository
+returns list of artifacts in repository
 
 ## Inputs & Outputs
 
-This action requires that you specify github acess token to the callers repository to **GITHUB_TOKEN** input
+this action by default uses the repository from which it was called. You can provide your own token in order to acces other repositories than the one from which you trigger you workflow. 
 
-You can do so easily by accesing [automaticly created token](https://docs.github.com/en/actions/security-guides/automatic-token-authentication) stored in secrets which contains said token `${{ secrets.GITHUB_TOKEN}}` or from github context `${{ github.token }}`
-
-## Example:
+Default token is [automaticly created token](https://docs.github.com/en/actions/security-guides/automatic-token-authentication) stored in secrets which contains said token `${{ secrets.GITHUB_TOKEN}}` or from github context `${{ github.token }}`
 
 
 ### Inputs:
@@ -16,9 +14,9 @@ You can do so easily by accesing [automaticly created token](https://docs.github
 | parameter  | required |       default       | description |
 | :--------- | :------: | :-----------------: | :---------- |
 | GITHUB_TOKEN    |   :x:    | ${{ github.token }} | you can specify you own token. Just make sure the token has permissions to API  `GET /repos/{owner}/{repo}/actions/artifacts`. As of right now when you create Personal access token (PAT) you have enable workflow permission |
-| repository |   :x:    | ${{ github.token }} | you can specify different repository in format `owner/repositry` for example `MichaelMelena/list-artifacts` for this repository          |
+| repository |   :x:    | ${{ github.token }} | you can specify different repository in format `owner/repositry` for example `MichaelMelena/list-artifacts` for this repository
 
-\* *just make sure your token matches your repository. Othervise you will be trying to open someone elses house with wrong key*
+\* *just make sure your token matches your repository*
 
 -----
 
@@ -56,8 +54,9 @@ list of artifacts in `JSON` format.
 ```
 ----
 
-## Template
-simple workflow which uses this action to retrieve list of artifacts and prints it to console
+
+## Starter template
+Simple workflow which uses this action to retrieve list of artifacts and prints it to console
 
 ```yml
 name: My workflow
@@ -69,4 +68,26 @@ jobs:
     - id: result 
       uses: MichaelMelena/list-artifacts@v1
     - run: echo '${{ steps.result.outputs.artifacts }}'
+```
+
+## Advanced template
+
+This template specifies which toke should be used and which repository should be schaned for artifacts 
+
+this template asumes you have create secret named `MY_PAT_TOKEN` which contains GitHub `PAT` token with access to target repository
+
+you have to replace `owner/his-repository` with valid repository to which you or the PAT token have access.
+
+```yml
+name: Advance workflow
+on: [workflow_dispatch]
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+    steps:
+    - id: result
+      uses: MichaelMelena/list-artifacts@v1
+      with:
+        GITHUB_TOKEN: ${{secrest.MY_PAT_TOKEN}}
+        respository: owner/his-repository
 ```

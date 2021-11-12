@@ -1,15 +1,15 @@
-name: "get list artifacts"
-description: "gets all artifacts for the current repository"
+name: "get artifacts"
+description: "gets all artifacts in repository"
 inputs:
   GITHUB_TOKEN:
-    description: "github access token for callers repository"
-    required: false,
+    description: "github access token"
+    required: false
     default: ${{ github.token }}
   repository:
     reqired: false
     default: ${{ github.repository }}
 outputs:
-  artifacts: # output will be available to future steps
+  artifacts:
     description: 'list of artifacts'
 runs:
   using: 'node12'
