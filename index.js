@@ -1,9 +1,4 @@
 const core = require("@actions/core");
-
-const token = core.getInput("GITHUB_TOKEN");
-const oldToken = process.env.GITHUB_TOKEN;
-process.env.GITHUB_TOKEN = token;
-
 const { Octokit } = require("@octokit/action");
 
 const octokit = new Octokit();
@@ -27,8 +22,6 @@ async function run() {
     console.log(data.artifacts);
   } catch (error) {
     core.setFailed(error.message);
-  } finally {
-    process.env.GITHUB_TOKEN = oldToken;
   }
 }
 
