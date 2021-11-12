@@ -2,7 +2,7 @@ name: Other repo artifacts
 on: [workflow_dispatch]
 defalts:
   runs-on: ubuntu-latest
-job:
+jobs:
   check-ezp:
     steps:
     - uses: MichaelMelena/list-artifacts@v1
