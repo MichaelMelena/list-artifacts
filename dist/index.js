@@ -50190,23 +50190,6 @@ try {
 
 /***/ }),
 
-/***/ 4258:
-/***/ ((module) => {
-
-let wait = function (milliseconds) {
-  return new Promise((resolve) => {
-    if (typeof milliseconds !== 'number') {
-      throw new Error('milliseconds not a number');
-    }
-    setTimeout(() => resolve("done!"), milliseconds)
-  });
-};
-
-module.exports = wait;
-
-
-/***/ }),
-
 /***/ 8188:
 /***/ ((module) => {
 
@@ -50529,22 +50512,14 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 const core = __nccwpck_require__(2186);
-const wait = __nccwpck_require__(4258);
 const { Octokit } = __nccwpck_require__(1231);
-const octokit = new Octokit();
+const octokit = new Octokit({ auth: `${core.getInput("repo-token")}` });
 
 const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
 
 // most @actions toolkit packages have async methods
 async function run() {
   try {
-    const ms = core.getInput("milliseconds");
-    core.info(`Waiting ${ms} milliseconds ...`);
-
-    core.debug(new Date().toTimeString()); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
-    await wait(parseInt(ms));
-    core.info(new Date().toTimeString());
-
     // See https://docs.github.com/en/rest/reference/actions#artifacts
     const { data } = await octokit.request(
       "GET /repos/{owner}/{repo}/actions/artifacts",
@@ -50555,7 +50530,7 @@ async function run() {
     );
     console.log(`artifacts for repo: ${repo}: `, data.artifacts);
 
-    core.setOutput("time", new Date().toTimeString());
+    core.setOutput("artifacts", data.artifacts);
   } catch (error) {
     core.setFailed(error.message);
   }
