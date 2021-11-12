@@ -1,5 +1,9 @@
 name: "get artifacts"
 description: "gets all artifacts in repository"
+author: "Michael Melena"
+branding:
+  icon: list
+  color: purple
 inputs:
   GITHUB_TOKEN:
     description: "github access token"
