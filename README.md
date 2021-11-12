@@ -1,31 +1,12 @@
 # MichaelMelena/list-artifacts@v1
 
-returns list of artifacts for callers repository
+returns list of artifacts for repository
 
 ## Inputs & Outputs
 
 This action requires that you specify github acess token to the callers repository to **GITHUB_TOKEN** input
 
 You can do so easily by accesing [automaticly created token](https://docs.github.com/en/actions/security-guides/automatic-token-authentication) stored in secrets which contains said token `${{ secrets.GITHUB_TOKEN}}` or from github context `${{ github.token }}`
-
-```yml
-name: "get list artifacts"
-description: "gets all artifacts for the current repository"
-inputs:
-  token:
-    description: "github access token for callers repository"
-    required: false
-  repository:
-    reqired: false
-    default: ${{ github.repository }}
-
-outputs:
-  artifacts: # output will be available to future steps
-    description: "list of artifacts"
-runs:
-  using: "node12"
-  main: "dist/index.js"
-```
 
 ## Example:
 
@@ -34,8 +15,12 @@ runs:
 
 | parameter  | required |       default       | description |
 | :--------- | :------: | :-----------------: | :---------- |
-| token      |   :x:    | ${{ github.token }} | a           |
-| repository |   :x:    | ${{ github.token }} | b           |
+| GITHUB_TOKEN    |   :x:    | ${{ github.token }} | you can specify you own token            |
+| repository |   :x:    | ${{ github.token }} | you can specify different repository in format `owner/repositry` for example `MichaelMelena/list-artifacts` for this repository          |
+
+\* *just make sure your token matches your repository. Othervise you will be trying to open someone elses house with wrong key*
+
+-----
 
 ### Outputs:
 
@@ -69,10 +54,10 @@ list of artifacts in `JSON` format.
   }
 ]
 ```
+----
 
-
-
-This workflow uses this action and then acesses the output value named artifacts and displays it with echo
+## Template
+simple workflow which uses this action to retrieve list of artifacts and prints it to console
 
 ```yml
 name: My workflow
@@ -81,7 +66,7 @@ jobs:
   first-job:
     runs-on: ubuntu-latest
     steps:
-      - id: result
-        uses: MichaelMelena/list-artifacts@v1
-      - run: echo '${{ steps.result.outputs.artifacts }}'
+    - id: result 
+      uses: MichaelMelena/list-artifacts@v1
+    - run: echo '${{ steps.result.outputs.artifacts }}'
 ```

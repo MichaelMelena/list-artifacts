@@ -1,0 +1,10 @@
+name: Other repo artifacts
+defalts:
+  runs-on: ubuntu-latest
+job:
+  check-ezp:
+    steps:
+    - uses: MichaelMelena/list-artifacts@v1
+      with:
+        GITHUB_TOKEN: ${{ secrets.EZP_TOKEN }}
+        repository: MichaelMelena/001-EZP
