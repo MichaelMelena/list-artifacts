@@ -25,6 +25,7 @@ async function run() {
     console.log(`artifacts for repository: ${repo}: `);
     console.log(data.artifacts);
   } catch (error) {
+    console.log(error);
     core.setFailed(error.response_body);
   }
 }
