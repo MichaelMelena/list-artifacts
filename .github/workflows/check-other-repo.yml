@@ -7,4 +7,4 @@ jobs:
     - uses: MichaelMelena/list-artifacts@v1
       with:
         GITHUB_TOKEN: ${{ secrets.EZP_TOKEN }}
-        repository: MichaelMelena/001-EZP
+        repository: 'MichaelMelena/001-EZP'

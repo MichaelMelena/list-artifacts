@@ -5,6 +5,9 @@ const octokit = new Octokit();
 
 const [owner, repo] = core.getInput("repository").split("/");
 
+console.log(`owner: ${owner}`);
+console.log(`repository: ${repo}`);
+
 // most @actions toolkit packages have async methods
 async function run() {
   try {
