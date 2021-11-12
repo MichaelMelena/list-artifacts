@@ -50373,7 +50373,6 @@ const [owner, repo] = core.getInput("repository").split("/");
 
 console.log(`owner: ${owner}`);
 console.log(`repository: ${repo}`);
-console.log(`token: ${core.getInput('GITHUB_TOKEN')}`);
 
 // most @actions toolkit packages have async methods
 async function run() {
@@ -50388,11 +50387,8 @@ async function run() {
     );
     core.setOutput("artifacts", data.artifacts);
 
-    console.log(`artifacts for repository: ${repo}: `);
-    console.log(data.artifacts);
   } catch (error) {
-    console.log(error);
-    core.setFailed(error.response_body);
+    core.setFailed(error);
   }
 }
 

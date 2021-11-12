@@ -15,7 +15,7 @@ You can do so easily by accesing [automaticly created token](https://docs.github
 
 | parameter  | required |       default       | description |
 | :--------- | :------: | :-----------------: | :---------- |
-| GITHUB_TOKEN    |   :x:    | ${{ github.token }} | you can specify you own token            |
+| GITHUB_TOKEN    |   :x:    | ${{ github.token }} | you can specify you own token. Just make sure the token has permissions to API  `GET /repos/{owner}/{repo}/actions/artifacts`. As of right now when you create Personal access token (PAT) you have enable workflow permission |
 | repository |   :x:    | ${{ github.token }} | you can specify different repository in format `owner/repositry` for example `MichaelMelena/list-artifacts` for this repository          |
 
 \* *just make sure your token matches your repository. Othervise you will be trying to open someone elses house with wrong key*
