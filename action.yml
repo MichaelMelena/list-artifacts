@@ -1,7 +1,7 @@
 name: "get list artifacts"
 description: "gets all artifacts for the current repository"
 inputs:
-  token:
+  GITHUB_TOKEN:
     description: "github access token for callers repository"
     required: false
   repository:
