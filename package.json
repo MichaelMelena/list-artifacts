@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/MichaelMelena/list-artifacts/issues",
   "dependencies": {
-    "@actions/core": "^1.2.5",
+    "@actions/core": "^1.10.0",
     "@octokit/action": "^3.18.0"
   },
   "devDependencies": {
