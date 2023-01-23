@@ -25,7 +25,7 @@
   "homepage": "https://github.com/MichaelMelena/list-artifacts/issues",
   "dependencies": {
     "@actions/core": "^1.2.5",
-    "@octokit/action": "^3.18.0"
+    "@octokit/action": "^5.0.2"
   },
   "devDependencies": {
     "@vercel/ncc": "^0.31.1",
